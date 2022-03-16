@@ -145,10 +145,24 @@ function App() {
           // authority
           wallet.publicKey,
           // amount to mint
-          1000,
+          1_000_000,
           // multiSigners
           [],
           splToken.TOKEN_PROGRAM_ID
+        )
+      );
+
+      // Set mint authority to none, so that supply becomes fixed
+      transaction.add(
+        splToken.createSetAuthorityInstruction(
+          // mint
+          mintAddress,
+          // currentAuthority
+          wallet.publicKey,
+          // authorityType
+          0,
+          // newAuthority
+          null
         )
       );
 
